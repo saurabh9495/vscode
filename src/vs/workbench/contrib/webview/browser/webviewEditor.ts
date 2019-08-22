@@ -137,6 +137,10 @@ export class WebviewEditor extends BaseEditor {
 	}
 
 	public async setInput(input: EditorInput, options: EditorOptions, token: CancellationToken): Promise<void> {
+		if (input.matches(this.input)) {
+			return;
+		}
+
 		if (this.input && this.input instanceof WebviewEditorInput) {
 			this.input.webview.release(this);
 		}
