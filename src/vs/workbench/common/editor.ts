@@ -716,7 +716,7 @@ export class EditorOptions implements IEditorOptions {
 		options.index = settings.index;
 		options.inactive = settings.inactive;
 		options.ignoreError = settings.ignoreError;
-
+		options.ignoreOverrides = settings.ignoreOverrides;
 		return options;
 	}
 
@@ -765,6 +765,11 @@ export class EditorOptions implements IEditorOptions {
 	 * message as needed. By default, an error will be presented as notification if opening was not possible.
 	 */
 	ignoreError: boolean | undefined;
+
+	/**
+	 * Does not use editor overrides while opening the editor.
+	 */
+	ignoreOverrides?: boolean;
 }
 
 /**
@@ -832,6 +837,10 @@ export class TextEditorOptions extends EditorOptions {
 
 		if (options.ignoreError) {
 			textEditorOptions.ignoreError = true;
+		}
+
+		if (options.ignoreOverrides) {
+			textEditorOptions.ignoreOverrides = true;
 		}
 
 		if (typeof options.index === 'number') {
